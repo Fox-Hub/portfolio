@@ -4,6 +4,7 @@ const search_condition = ref('')
 const word = ref('')
 const search_word = ref([])
 const search_user = ref('')
+const tweet_list = ref([])
 
 onBeforeMount(() => {
     search_condition.value = 'tweet'
@@ -14,7 +15,6 @@ onBeforeMount(() => {
 
 const condition_change = ((condition) => {
     search_condition.value = condition
-    alert(search_condition.value)
 })
 
 const add_word = ((wd) => {
@@ -82,7 +82,10 @@ const delete_word = ((index) => {
                                 <div v-show="search_condition == 'user'">
                                     <h3><strong>User</strong></h3>
                                     <h4>search username</h4>
+                                    <input v-model="search_user" type="text" class="form-control mb-3">
                                 </div>
+                                <button id="tweet" name="tweet" type="submit"
+                                    class="btn btn-outline-primary btn-pill">search</button>
                             </div>
                         </div>
                     </div>
@@ -97,9 +100,9 @@ const delete_word = ((index) => {
                             <th style="width: 70%">Contents</th>
                         </tr>
                     </thead>
-                    <tr th:each="tweet : ${tweetMap}">
-                        <td th:text="${tweet.key}"></td>
-                        <td th:text="${tweet.value}"></td>
+                    <tr v-for="tweet in tweet_list">
+                        <td> {{ tweet[0] }}</td>
+                        <td> {{ tweet[1] }}</td>
                     </tr>
                 </table>
             </div>
@@ -112,7 +115,7 @@ const delete_word = ((index) => {
                     <span> <textarea rows="8" cols="120" id="tweetContent" name="tweetContent"
                             class="form-control ta"></textarea>
                     </span>
-                    <div class="text-right">
+                    <div class="text-right mb-3">
                         <button type="button" id="clearBtn" name="clearBtn" class="btn btn-outline-secondary btn-pill"
                             onclick="clear()">Clear</button>
                     </div>

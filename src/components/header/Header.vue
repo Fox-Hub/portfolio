@@ -41,7 +41,7 @@ const changePage = function (pageName) {
                                     class="sr-only">(current)</span>
                             </a></li>
 
-                        <li class="nav-item"><a class="nav-link">Twitter</a></li>
+                        <li class="nav-item"><a class="nav-link" @click="changePage('/tweet')">Twitter</a></li>
                         <li class="nav-item"><a class="nav-link" @click="changePage('/youtube')">YouTube</a>
                         </li>
                         <li class="nav-item"><a class="nav-link">Chat</a></li>
