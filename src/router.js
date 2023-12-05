@@ -4,6 +4,7 @@ import Login from './components/pages/Login.vue'
 import Tweet from './components/pages/Tweet.vue'
 import Setting from './components/pages/Setting.vue'
 import Youtube from './components/pages/Youtube.vue'
+import AIIncantation from './components/pages/AIIncantation.vue'
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -11,6 +12,7 @@ const routes = [
     { path: '/tweet', name: 'Tweet', component: Tweet },
     { path: '/setting', name: 'Setting', component: Setting },
     { path: '/youtube', name: 'Youtube', component: Youtube },
+    { path: '/aiincantation', name: 'AIIncantation', component: AIIncantation },
 ]
 
 const router = createRouter({
