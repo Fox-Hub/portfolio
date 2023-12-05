@@ -31,7 +31,7 @@ onBeforeMount(() => {
 })
 
 const openGit = function () {
-    const url = "https://github.com/Fox-Hub/FreeTask";
+    const url = "https://github.com/Fox-Hub/portfolio";
     window.open(url, "_blank");
 }
 </script>
@@ -40,7 +40,7 @@ const openGit = function () {
         <div class="main text-center mt-5">
             <h6 class="heading">This page is My portfolio</h6>
             <p class="text-info">Front function uses Vue.js</p>
-            <p class="text-info">Server end functionality is Java RestAPI</p>
+            <p class="text-info">Server end functionality is AWS Lambda</p>
         </div>
         <div class="container d-flex justify-content-center">
             <div class="row g-1">
@@ -76,6 +76,16 @@ const openGit = function () {
         </div>
         <div class="container mt-1 mb-6 d-flex justify-content-center">
             <div class="row g-1">
+                <div class="col-md-6 border-right">
+                    <div class="cards" @click="changePage('/aiincantation')">
+                        <div class="first bg-white p-4 text-center">
+                            <img src="../../assets/settings.svg" width="100" height="100" />
+
+                            <h5>AI Incantation</h5>
+                            <p class="line1">AI呪文生成</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-6 border-right">
                     <div class="cards" @click="openGit()">
                         <div class="first bg-white p-4 text-center">
