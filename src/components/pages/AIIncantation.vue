@@ -1,11 +1,12 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref, reactive, onBeforeMount } from 'vue'
 
 const quority_type = ref([])
 const angle = ref([])
 const camera_work = ref([])
 const angle_of_view_position = ref([])
 const painting_style = ref([])
+const body_shape = ref([])
 
 const quority_type_jpn = ref(
     ['8k', '8k_壁紙', '非常に詳細なCG', '高画質イラスト', 'イラスト', '現実的', '写真のようにリアル', '写真撮影', ' RAW写真']
@@ -14,15 +15,15 @@ const quority_type_eng = ref(
     ['8k', '8k wallpaper', 'extremely detailed CG', 'super fine illustration', 'illustration', 'realistic', 'photo realistic', 'photography', 'RAW photo']
 )
 const quority_type_img = ref([
-    'src/assets/AI/QuorityType/00020-3616697256.png',
-    'src/assets/AI/QuorityType/00021-1657005802.png',
-    'src/assets/AI/QuorityType/00022-1321470918.png',
-    'src/assets/AI/QuorityType/00023-2348807691.png',
-    'src/assets/AI/QuoriryType/00024-2203676968.png',
-    'src/assets/AI/QuoriryType/00025-1391681112.png',
-    'src/assets/AI/QuoriryType/00025-216990480.png',
-    'src/assets/AI/QuoriryType/00025-3750985604.png',
-    'src/assets/AI/QuoriryType/00025-1081288529.png'
+    '/img/AI/QuorityType/00020-3616697256.png',
+    '/img/AI/QuorityType/00021-1657005802.png',
+    '/img/AI/QuorityType/00022-1321470918.png',
+    '/img/AI/QuorityType/00023-2348807691.png',
+    '/img/AI/QuorityType/00024-2203676968.png',
+    '/img/AI/QuorityType/00025-1391681112.png',
+    '/img/AI/QuorityType/00025-216990480.png',
+    '/img/AI/QuorityType/00025-3750985604.png',
+    '/img/AI/QuorityType/00025-1081288529.png'
 ])
 
 const angle_jpn = ref([
@@ -42,12 +43,12 @@ const angle_eng = ref([
     'eye-level angle'
 ])
 const angle_img = ref([
-    'src/assets/AI/Angle/00025-3075723502.png',
-    'src/assets/AI/Angle/00025-1333941240.png',
-    'src/assets/AI/Angle/00025-2993530595.png',
-    'src/assets/AI/Angle/00025-639423733.png',
-    'src/assets/AI/Angle/00025-3336221936.png',
-    'src/assets/AI/Angle/00025-3829735195.png'
+    '/img/AI/Angle/00025-3075723502.png',
+    '/img/AI/Angle/00025-1333941240.png',
+    '/img/AI/Angle/00025-2993530595.png',
+    '/img/AI/Angle/00025-639423733.png',
+    '/img/AI/Angle/00025-3336221936.png',
+    '/img/AI/Angle/00025-3829735195.png'
 ])
 
 const camera_work_jpn = ref([
@@ -65,11 +66,11 @@ const camera_work_eng = ref([
     'from adove'
 ])
 const camera_work_img = ref([
-    'src/assets/AI/CameraWork/00025-3204933560.png',
-    'src/assets/AI/CameraWork/00025-240753855.png',
-    'src/assets/AI/CameraWork/00025-1896041132.png',
-    'src/assets/AI/CameraWork/00025-1425452887.png',
-    'src/assets/AI/CameraWork/00025-1865279090.png'
+    '/img/AI/CameraWork/00025-3204933560.png',
+    '/img/AI/CameraWork/00025-240753855.png',
+    '/img/AI/CameraWork/00025-1896041132.png',
+    '/img/AI/CameraWork/00025-1425452887.png',
+    '/img/AI/CameraWork/00025-1865279090.png'
 ])
 
 const angle_of_view_position_jpn = ref([
@@ -97,16 +98,16 @@ const angle_of_view_position_eng = ref([
     'Show from the hips to the shoulders'
 ])
 const angle_of_view_position_img = ref([
-    'src/assets/AI/AngleOfViewPosition/00025-366422772.png',
-    'src/assets/AI/AngleOfViewPosition/00025-2949469006.png',
-    'src/assets/AI/AngleOfViewPosition/00025-4058964528.png',
-    'src/assets/AI/AngleOfViewPosition/00025-4246781417.png',
-    'src/assets/AI/AngleOfViewPosition/00025-270235161.png',
-    'src/assets/AI/AngleOfViewPosition/00025-2651585751.png',
-    'src/assets/AI/AngleOfViewPosition/00025-107126266.png',
-    'src/assets/AI/AngleOfViewPosition/00025-3279096016.png',
-    'src/assets/AI/AngleOfViewPosition/00025-617053682.png',
-    'src/assets/AI/AngleOfViewPosition/00025-4017019692.png'
+    '/img/AI/AngleOfViewPosition/00025-366422772.png',
+    '/img/AI/AngleOfViewPosition/00025-2949469006.png',
+    '/img/AI/AngleOfViewPosition/00025-4058964528.png',
+    '/img/AI/AngleOfViewPosition/00025-4246781417.png',
+    '/img/AI/AngleOfViewPosition/00025-270235161.png',
+    '/img/AI/AngleOfViewPosition/00025-2651585751.png',
+    '/img/AI/AngleOfViewPosition/00025-107126266.png',
+    '/img/AI/AngleOfViewPosition/00025-3279096016.png',
+    '/img/AI/AngleOfViewPosition/00025-617053682.png',
+    '/img/AI/AngleOfViewPosition/00025-4017019692.png'
 ])
 
 const painting_style_jpn = ref([
@@ -130,15 +131,34 @@ const painting_style_eng = ref([
     'pastel'
 ])
 const painting_style_img = ref([
-    'src/assets/AI/PaintingStyle/00025-3945522650.png',
-    'src/assets/AI/PaintingStyle/00025-3945522650_2.png',
-    'src/assets/AI/PaintingStyle/00025-3945522654.png',
-    'src/assets/AI/PaintingStyle/00025-3945522653.png',
-    'src/assets/AI/PaintingStyle/00025-3945522650_3.png',
-    'src/assets/AI/PaintingStyle/00025-1665788051.png',
-    'src/assets/AI/PaintingStyle/00025-2696473208.png',
-    'src/assets/AI/PaintingStyle/00025-1728075155.png',
+    '/img/AI/PaintingStyle/00025-3945522650.png',
+    '/img/AI/PaintingStyle/00025-3945522650_2.png',
+    '/img/AI/PaintingStyle/00025-3945522654.png',
+    '/img/AI/PaintingStyle/00025-3945522653.png',
+    '/img/AI/PaintingStyle/00025-3945522650_3.png',
+    '/img/AI/PaintingStyle/00025-1665788051.png',
+    '/img/AI/PaintingStyle/00025-2696473208.png',
+    '/img/AI/PaintingStyle/00025-1728075155.png',
 ])
+
+const body_shape_rective = reactive({
+    jpn: [
+        '痩せ',
+        '小柄',
+        'スレンダー'
+    ],
+    eng: [
+        'skinny',
+        'petite',
+        'slender'
+    ],
+    img: [
+        '/img/AI/BodyShape/00025-3835879101.png',
+        '/img/AI/BodyShape/00025-3067692616.png',
+        '/img/AI/BodyShape/00025-4116093741.png'
+    ]
+}
+)
 
 </script>
 <template>
@@ -346,6 +366,47 @@ const painting_style_img = ref([
                                             </td>
                                             <td>
                                                 <img :src="painting_style_img[index]">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Body Shape -->
+            <div class="mb-5">
+                <div class="accordion" id="accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#body_shape" aria-expanded="true" aria-controls="body_shape">
+                                体型
+                            </button>
+                        </h2>
+                        <div id="body_shape" class="accordion-collapse collapse" data-bs-parent="#body_shape">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">image</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(body, index) in  body_shape_rective.eng ">
+                                            <td scope="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" :id="body" :value="body"
+                                                        v-model="body_shape">
+                                                    <label class="form-check-label" :id="body">{{
+                                                        body_shape_rective.jpn[index]
+                                                    }}</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <img :src="body_shape_rective.img[index]">
                                             </td>
                                         </tr>
                                     </tbody>
