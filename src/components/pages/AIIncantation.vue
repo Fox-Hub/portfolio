@@ -1,12 +1,99 @@
 <script setup>
-import { ref, reactive, onBeforeMount } from 'vue'
+import { ref, reactive, watch } from 'vue'
 
 const quority_type = ref([])
 const angle = ref([])
-const camera_work = ref([])
 const angle_of_view_position = ref([])
+const camera_work = ref([])
 const painting_style = ref([])
 const body_shape = ref([])
+const pose = ref([])
+
+const incantation = ref('')
+const temp_incantation = ref('')
+
+const message = ref('')
+
+watch([quority_type, angle, angle_of_view_position, camera_work, painting_style, body_shape, pose], () => {
+    temp_incantation.value = ''
+    for (var i = 0; i < quority_type.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = quority_type.value[i]
+        else temp_incantation.value += ', ' + quority_type.value[i]
+    }
+
+    for (var i = 0; i < angle.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = angle.value[i]
+        else temp_incantation.value += ', ' + angle.value[i]
+    }
+
+    for (var i = 0; i < angle_of_view_position.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = angle_of_view_position.value[i]
+        else temp_incantation.value += ', ' + angle_of_view_position.value[i]
+    }
+
+    for (var i = 0; i < camera_work.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = camera_work.value[i]
+        else temp_incantation.value += ', ' + camera_work.value[i]
+    }
+
+    for (var i = 0; i < painting_style.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = painting_style.value[i]
+        else temp_incantation.value += ', ' + painting_style.value[i]
+    }
+
+    for (var i = 0; i < body_shape.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = body_shape.value[i]
+        else temp_incantation.value += ', ' + body_shape.value[i]
+    }
+
+    for (var i = 0; i < pose.value.length; i++) {
+        if (temp_incantation.value == '') temp_incantation.value = pose.value[i]
+        else temp_incantation.value += ', ' + pose.value[i]
+    }
+
+    if (incantation.value != temp_incantation.value) message.value = '変更がありました。generateから再生成してください'
+})
+
+const generate = (() => {
+    incantation.value = ''
+    for (var i = 0; i < quority_type.value.length; i++) {
+        if (incantation.value == '') incantation.value = quority_type.value[i]
+        else incantation.value += ', ' + quority_type.value[i]
+    }
+
+    for (var i = 0; i < angle.value.length; i++) {
+        if (incantation.value == '') incantation.value = angle.value[i]
+        else incantation.value += ', ' + angle.value[i]
+    }
+
+    for (var i = 0; i < angle_of_view_position.value.length; i++) {
+        if (incantation.value == '') incantation.value = angle_of_view_position.value[i]
+        else incantation.value += ', ' + angle_of_view_position.value[i]
+    }
+
+    for (var i = 0; i < camera_work.value.length; i++) {
+        if (incantation.value == '') incantation.value = camera_work.value[i]
+        else incantation.value += ', ' + camera_work.value[i]
+    }
+
+    for (var i = 0; i < painting_style.value.length; i++) {
+        if (incantation.value == '') incantation.value = painting_style.value[i]
+        else incantation.value += ', ' + painting_style.value[i]
+    }
+
+    for (var i = 0; i < body_shape.value.length; i++) {
+        if (incantation.value == '') incantation.value = body_shape.value[i]
+        else incantation.value += ', ' + body_shape.value[i]
+    }
+
+    for (var i = 0; i < pose.value.length; i++) {
+        if (incantation.value == '') incantation.value = pose.value[i]
+        else incantation.value += ', ' + pose.value[i]
+    }
+
+    temp_incantation.value = incantation.value
+    message.value = ''
+})
 
 const quority_type_jpn = ref(
     ['8k', '8k_壁紙', '非常に詳細なCG', '高画質イラスト', 'イラスト', '現実的', '写真のようにリアル', '写真撮影', ' RAW写真']
@@ -159,6 +246,63 @@ const body_shape_rective = reactive({
     ]
 }
 )
+
+const pose_reactive = reactive({
+    jpn: [
+        '全身',
+        '上半身',
+        '片腕を上げる',
+        '両腕を上げる',
+        '座る',
+        '腕を組む',
+        '足を組む',
+        '体操座り',
+        '寝そべる',
+        '振り返る',
+        '後ろ向き',
+        'ジャンプ',
+        '胸を寄せる',
+        'こちらに指をさす',
+        'しーっのポーズ',
+        'カメラに手を振る'
+    ],
+    eng: [
+        'full body',
+        'upper body',
+        'arm up',
+        'arms up',
+        'sitting',
+        'crossed arms',
+        'crossed legs',
+        'knees up',
+        'lying',
+        'looking back',
+        'back',
+        'jumping',
+        'breast squeeze',
+        'point at viewer',
+        'finger to mouth',
+        'waving at viewer'
+    ],
+    img: [
+        '/img/AI/Pose/00025-1501807032.png',
+        '/img/AI/Pose/00025-1431482890.png',
+        '/img/AI/Pose/00025-3553931586.png',
+        '/img/AI/Pose/00025-975626907.png',
+        '/img/AI/Pose/00025-2615392490.png',
+        '/img/AI/Pose/00025-1580868416.png',
+        '/img/AI/Pose/00025-1292212272.png',
+        '/img/AI/Pose/00025-2868473888.png',
+        '/img/AI/Pose/00025-2371480630.png',
+        '/img/AI/Pose/00025-1144601195.png',
+        '/img/AI/Pose/00025-2845494134.png',
+        '/img/AI/Pose/00025-3238821013.png',
+        '/img/AI/Pose/00025-1780769721.png',
+        '/img/AI/Pose/00025-4202109405.png',
+        '/img/AI/Pose/00025-730700353.png',
+        '/img/AI/Pose/00025-2339352150.png'
+    ]
+})
 
 </script>
 <template>
@@ -416,9 +560,63 @@ const body_shape_rective = reactive({
                     </div>
                 </div>
             </div>
+            <!-- Pose -->
+            <div class="mb-5">
+                <div class="accordion" id="accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pose"
+                                aria-expanded="true" aria-controls="pose">
+                                ポーズ
+                            </button>
+                        </h2>
+                        <div id="pose" class="accordion-collapse collapse" data-bs-parent="#pose">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">image</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(po, index) in  pose_reactive.eng ">
+                                            <td scope="row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" :id="po" :value="po"
+                                                        v-model="pose">
+                                                    <label class="form-check-label" :id="po">{{
+                                                        pose_reactive.jpn[index]
+                                                    }}</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <img :src="pose_reactive.img[index]">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- message -->
+            <div v-show="message" class="alert alert-danger alert-dismissible fade mt-5 show" role="alert">
+                <strong>※{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!-- button -->
+            <div class="mb-3">
+                <button id="generate" name="generate" class="btn btn-outline-primary btn-pill"
+                    @click="generate()">generate</button>
+            </div>
+            <div class="mb-3">
+                <button id="clear" name="clear" class="btn btn-outline-primary btn-pill">clear</button>
+            </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">positive</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ quority_type }}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ incantation }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">negative</label>
